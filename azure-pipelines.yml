@@ -22,7 +22,7 @@ stages:
          backendAzureRmStorageAccountName: 'tfstate464486048'
          backendAzureRmContainerName: 'tfstate'
          backendAzureRmKey: 'terraform.tfstate'
-     - task: TerraformValidate
+     - task: TerraformValidate@2.1
        inputs:
          provider: 'azurerm'
          command: 'validate'
