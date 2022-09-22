@@ -14,6 +14,9 @@ stages:
          sshPublicKey: 'ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQDEM6HCI0GQWF4WwXACfyj/qsaXHMFzcTpbAltU5htD+vpXcNGA0YB0ZxABsAx46mTJgYs665BlSRdQfS+j1xjsuI5LPdR6wURu49ysibwmwnscVIkesrj2jNvi9KYzAic76aKs6hM8+pXE2BfNjB3j1UPepQn48EP5g+ifXuyXH1T7bV5hi1B/tTyWa9r3MdvNs31IhPdry3lozQM1BE9e9MS1bsa1y+yYKaI0X/Xy8d2W0LdzdQDGxqtNI5HGKJjnAt9fAkKPDfl3CkpMMp3ySxbqG2DonD7sBQK6AGO0V4GZF234JjZDnMO0ejnlLHXhCIJGozWsvXudXOkgbCYVT+lQWTnKjnyBF5lpH0LQZnP9p27FWEp85RoVmI4bPyRIh29dd7Sxjg3qv1oBIRUwn8K56YFUxI65FMVfvrztu6Ik+b7CJ2lHI78XlNkwKeDAW8udf5OZm4Q37SKnXrtdctlc+h7q4DIxqj1zS0zVBLUwdIH7f9MasYQ4TgBM/uU= AzureAD+SyedShah@DESKTOP-OPB779E'
          sshKeySecureFile: 'id_rsa'
     # Needed for Terraform VM deployment
+     - task: TerraformInstaller@0
+       inputs:
+         terraformVersion: 'latest'
      - task: TerraformTaskV3@3
        inputs:
          provider: 'azurerm'
