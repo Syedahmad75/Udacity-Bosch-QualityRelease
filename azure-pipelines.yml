@@ -9,9 +9,6 @@ stages:
       name: syed
     steps:
     # Needed for Terraform VM deployment
-     - task: TerraformInstaller@0
-       inputs:
-         terraformVersion: 'v1.1.7'
      - task: TerraformTaskV3@3
        inputs:
          provider: 'azurerm'
