@@ -1,0 +1,68 @@
+name: Azure Pipelines
+variables:
+  python.version: '3.7.6'
+stages:
+- stage: Build
+  jobs:
+  - job: Build
+    pool:
+      name: syed
+    steps:
+    # Needed for Terraform VM deployment
+     - task: InstallSSHKey@0
+       inputs:
+         knownHostsEntry: '5AAAAIOMqqnkVzrm0SdG6UOoqKLsabgH5C9okWi0dh2l9GKJl'
+         sshPublicKey: 'ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQDEM6HCI0GQWF4WwXACfyj/qsaXHMFzcTpbAltU5htD+vpXcNGA0YB0ZxABsAx46mTJgYs665BlSRdQfS+j1xjsuI5LPdR6wURu49ysibwmwnscVIkesrj2jNvi9KYzAic76aKs6hM8+pXE2BfNjB3j1UPepQn48EP5g+ifXuyXH1T7bV5hi1B/tTyWa9r3MdvNs31IhPdry3lozQM1BE9e9MS1bsa1y+yYKaI0X/Xy8d2W0LdzdQDGxqtNI5HGKJjnAt9fAkKPDfl3CkpMMp3ySxbqG2DonD7sBQK6AGO0V4GZF234JjZDnMO0ejnlLHXhCIJGozWsvXudXOkgbCYVT+lQWTnKjnyBF5lpH0LQZnP9p27FWEp85RoVmI4bPyRIh29dd7Sxjg3qv1oBIRUwn8K56YFUxI65FMVfvrztu6Ik+b7CJ2lHI78XlNkwKeDAW8udf5OZm4Q37SKnXrtdctlc+h7q4DIxqj1zS0zVBLUwdIH7f9MasYQ4TgBM/uU= AzureAD+SyedShah@DESKTOP-OPB779E'
+         sshKeySecureFile: 'id_rsa'
+     - task: ArchiveFiles@2
+       displayName: 'Archive FakeRestAPI'
+       inputs:
+        rootFolderOrFile: '$(System.DefaultWorkingDirectory)/fakerestapi'
+        includeRootFolder: false
+        archiveType: 'zip'
+        archiveFile: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId)-fakerestapi.zip'
+    
+     - publish: $(Build.ArtifactStagingDirectory)/$(Build.BuildId)-fakerestapi.zip
+       displayName: 'Upload Package'
+       artifact: drop-fakerestapi
+- stage:
+  jobs:
+  - deployment: FakeRestAPI
+    pool:
+      name: syed
+    environment: 'TEST'
+    strategy:
+      runOnce:
+        deploy:
+          steps:
+          - task: AzureWebApp@1
+            displayName: 'Deploy Azure Web App'
+            inputs:
+              azureSubscription: 'Azure for Students(78edc3c6-6f4c-46b2-8fed-9503d6b80433)'
+              appType: 'webApp'
+              appName: 'dev-westeurope-001-AppService'
+              package: '$(Pipeline.Workspace)/drop-fakerestapi/$(Build.BuildId)-fakerestapi.zip'
+              deploymentMethod: 'auto'
+  # - deployment: VMDeploy
+  #   displayName: NAME
+  #   environment:
+  #     name:  ENVIRONMENT NAME
+  #     resourceType: VirtualMachine
+  #     tags: TAG NAME
+  #   strategy:
+  #     runOnce:
+  #       deploy:
+  #         steps:
+  #         - task: Bash@3
+  #           inputs:
+  #             targetType: 'inline'
+  #             script: |
+  #               #! /bin/bash
+                
+  #               sudo apt-get upgrade -y
+  #               sudo apt-get install python3-pip -y
+  #               sudo apt-get install unzip -y
+  #               sudo apt-get install -y chromium-browser
+  #               pip3 install selenium
+  #               export PATH=$PATH:some/path
+
