@@ -30,7 +30,6 @@ stages:
          provider: 'azurerm'
          command: 'plan'
          workingDirectory: '$(System.DefaultWorkingDirectory))/Configurations/terraform'
-         environmentServiceNameAzureRM: 'Azure for Students(78edc3c6-6f4c-46b2-8fed-9503d6b80433)'
      - task: InstallSSHKey@0
        inputs:
          knownHostsEntry: '5AAAAIOMqqnkVzrm0SdG6UOoqKLsabgH5C9okWi0dh2l9GKJl'
