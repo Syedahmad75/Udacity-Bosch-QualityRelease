@@ -15,9 +15,11 @@ stages:
          sshKeySecureFile: 'id_rsa'
     # Needed for Terraform VM deployment
      - task: TerraformInstaller@0
+       displayName: 'Install Terraform'
        inputs:
          terraformVersion: 'latest'
      - task: TerraformTaskV3@3
+       displayName: 'Terraform Init'
        inputs:
          provider: 'azurerm'
          command: 'init'
@@ -28,18 +30,27 @@ stages:
          backendAzureRmContainerName: 'tfstate'
          backendAzureRmKey: 'terraform.tfstate'
      - task: TerraformTaskV3@3
+       displayName: 'Terraform Validate'
        inputs:
          provider: 'azurerm'
          command: 'validate'
          workingDirectory: '$(System.DefaultWorkingDirectory)\terraform'
 
      - task: TerraformTaskV3@3
+       displayName: 'Terraform Plan'
        inputs:
          provider: 'azurerm'
          command: 'plan'
          workingDirectory: '$(System.DefaultWorkingDirectory)\terraform'
          environmentServiceNameAzureRM: 'Azure for Students(78edc3c6-6f4c-46b2-8fed-9503d6b80433)'
      
+     - task: TerraformTaskV3@3
+       displayName: 'Terraform Apply'
+       inputs:
+         provider: 'azurerm'
+         command: 'apply'
+         commandOptions: '-auto-approve'
+         environmentServiceNameAzureRM: 'Azure for Students(78edc3c6-6f4c-46b2-8fed-9503d6b80433)'
      - task: ArchiveFiles@2
        displayName: 'Archive FakeRestAPI'
        inputs:
