@@ -36,8 +36,7 @@ stages:
      - task: TerraformTaskV3@3
        inputs:
          provider: 'azurerm'
-         command: 'plan'
-         workingDirectory: '$(System.DefaultWorkingDirectory))/Configurations/terraform'
+         command: 'apply'
          environmentServiceNameAzureRM: 'Azure for Students(78edc3c6-6f4c-46b2-8fed-9503d6b80433)'
      
      - task: ArchiveFiles@2
@@ -51,6 +50,7 @@ stages:
      - publish: $(Build.ArtifactStagingDirectory)/$(Build.BuildId)-fakerestapi.zip
        displayName: 'Upload Package'
        artifact: drop-fakerestapi
+
 - stage:
   jobs:
   - deployment: FakeRestAPI
