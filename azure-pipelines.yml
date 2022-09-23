@@ -21,7 +21,7 @@ stages:
        inputs:
          provider: 'azurerm'
          command: 'init'
-         workingDirectory: '$(System.DefaultWorkingDirectory)/terraform'
+         workingDirectory: '$(System.DefaultWorkingDirectory)\Configurations\terraform'
          backendServiceArm: 'Azure for Students(78edc3c6-6f4c-46b2-8fed-9503d6b80433)'
          backendAzureRmResourceGroupName: 'tfstate'
          backendAzureRmStorageAccountName: 'tfstate464486048'
