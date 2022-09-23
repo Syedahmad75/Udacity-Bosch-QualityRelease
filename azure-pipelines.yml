@@ -49,6 +49,7 @@ stages:
        inputs:
          provider: 'azurerm'
          command: 'apply'
+         workingDirectory: '$(System.DefaultWorkingDirectory)\terraform'
          commandOptions: '-auto-approve'
          environmentServiceNameAzureRM: 'Azure for Students(78edc3c6-6f4c-46b2-8fed-9503d6b80433)'
      - task: ArchiveFiles@2
