@@ -63,6 +63,17 @@ stages:
      - publish: $(Build.ArtifactStagingDirectory)/$(Build.BuildId)-fakerestapi.zip
        displayName: 'Upload Package'
        artifact: drop-fakerestapi
+    
+     - task: ArchiveFiles@2
+       displayName: "Archive Selenium UI Tests"
+       inputs:
+              rootFolderOrFile: "$(System.DefaultWorkingDirectory)/selenium"
+              includeRootFolder: false
+              archiveType: "zip"
+              archiveFile: '$(Build.BuildId)/selenium-tests.zip'
+              replaceExistingArchive: true
+     - upload: $(Build.BuildId)/selenium-tests.zip
+       artifact: selenium
 
 - stage:
   jobs:
@@ -82,26 +93,27 @@ stages:
               appName: 'dev-westeurope-001-AppService'
               package: '$(Pipeline.Workspace)/drop-fakerestapi/$(Build.BuildId)-fakerestapi.zip'
               deploymentMethod: 'auto'
-  # - deployment: VMDeploy
-  #   displayName: NAME
-  #   environment:
-  #     name:  ENVIRONMENT NAME
-  #     resourceType: VirtualMachine
-  #     tags: TAG NAME
-  #   strategy:
-  #     runOnce:
-  #       deploy:
-  #         steps:
-  #         - task: Bash@3
-  #           inputs:
-  #             targetType: 'inline'
-  #             script: |
-  #               #! /bin/bash
-                
-  #               sudo apt-get upgrade -y
-  #               sudo apt-get install python3-pip -y
-  #               sudo apt-get install unzip -y
-  #               sudo apt-get install -y chromium-browser
-  #               pip3 install selenium
-  #               export PATH=$PATH:some/path
+  - deployment: VMDeploy
+    displayName: Deploy Virtual Machine
+    environment:
+        name: 'TEST'
+        resourceType: VirtualMachine
+    strategy:
+          runOnce:
+            deploy:
+              steps:
+                - bash: |
+                    sudo apt-get update -y
+                    sudo apt-get install python3-pip -y
+                    sudo apt-get install unzip -y
+                    sudo apt-get install -y chromium-browser
+                    sudo apt-get install -y chromium-chromedriver
+                    python3 -m pip install --upgrade pip
+                    pip3 install selenium
+                    # Install Log Analytics agent on Linux computers (only need to run once, comment when installed)
+                    # wget https://raw.githubusercontent.com/Microsoft/OMS-Agent-for-Linux/master/installer/scripts/onboard_agent.sh && sh onboard_agent.sh -w ${AZURE_LOG_ANALYTICS_ID} -s ${AZURE_LOG_ANALYTICS_PRIMARY_KEY} -d opinsights.azure.com
+                  env: 
+                    AZURE_LOG_ANALYTICS_ID: $(la_workspace_id)
+                    AZURE_LOG_ANALYTICS_PRIMARY_KEY: $(la_primary_key)
+                  displayName: Configure VM
 
