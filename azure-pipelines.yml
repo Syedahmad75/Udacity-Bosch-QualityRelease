@@ -239,12 +239,6 @@ stages:
                                           -e -f -o log/jmeter \
                                           -j log/jmeter/jmeter-stress-test.log
             displayName: JMeter Stress Test
-          - bash: |
-              apache-jmeter-5.5/bin/jmeter -n -t automatedtesting/jmeter/endurance.jmx \
-                                          -l log/jmeter/endurance-test-result.csv \
-                                          -e -f -o log/jmeter \
-                                          -j log/jmeter/jmeter-endurance-test.log
-            displayName: JMeter Endurance Test
           - task: ArchiveFiles@2
             displayName: Saving JMeter stress test report to artifact
             inputs:
@@ -253,6 +247,13 @@ stages:
               archiveType: 'zip'
               archiveFile: '$(System.DefaultWorkingDirectory)/log/jmeter-$(Build.BuildId).zip'
               verbose: true
+
+          - bash: |
+              apache-jmeter-5.5/bin/jmeter -n -t automatedtesting/jmeter/endurance.jmx \
+                                          -l log/jmeter/endurance-test-result.csv \
+                                          -e -f -o log/jmeter \
+                                          -j log/jmeter/jmeter-endurance-test.log
+            displayName: JMeter Endurance Test        
           - task: ArchiveFiles@2
             displayName: Saving JMeter endurance test report to artifact
             inputs:
