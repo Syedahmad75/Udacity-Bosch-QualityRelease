@@ -1,8 +1,18 @@
+trigger:
+  branches:
+    include:
+    - main
+  paths:
+    exclude:
+    - README.md
+    - .gitignore
+    - images/
+
 name: Azure Pipelines
 variables:
   python.version: '3.7.6'
 stages:
-- stage: Build
+- stage: Provision IaC
   jobs:
   - job: Build
     pool:
@@ -79,7 +89,7 @@ stages:
   jobs:
   - deployment: FakeRestAPI
     pool:
-      name: syed
+      name: Linux VM
     environment: 'TEST'
     strategy:
       runOnce:
