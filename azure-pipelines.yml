@@ -202,7 +202,7 @@ stages:
     - job: PerformanceTest
       displayName: Test JMeter
       pool:
-        name: syed
+        name: Linux VM
       steps:
           - bash: |
               sudo apt-get install openjdk-11-jre-headless -y
