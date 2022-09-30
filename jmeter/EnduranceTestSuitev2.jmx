@@ -56,7 +56,7 @@
       </HeaderManager>
       <hashTree/>
       <CSVDataSet guiclass="TestBeanGUI" testclass="CSVDataSet" testname="CSV IDs Source" enabled="true">
-        <stringProp name="filename">E:/Udacity-Bosch-QualityRelease/automatedtesting/jmeter/genereal_ids.csv</stringProp>
+        <stringProp name="filename">E:/Udacity-Bosch-QualityRelease/jmeter/genereal_ids.csv</stringProp>
         <stringProp name="fileEncoding"></stringProp>
         <stringProp name="variableNames">id</stringProp>
         <boolProp name="ignoreFirstLine">false</boolProp>
@@ -68,7 +68,7 @@
       </CSVDataSet>
       <hashTree/>
       <CSVDataSet guiclass="TestBeanGUI" testclass="CSVDataSet" testname="CSV BookIDs Source" enabled="true">
-        <stringProp name="filename">E:/Udacity-Bosch-QualityRelease/automatedtesting/jmeter/book_ids.csv</stringProp>
+        <stringProp name="filename">E:/Udacity-Bosch-QualityRelease/jmeter/book_ids.csv</stringProp>
         <stringProp name="fileEncoding"></stringProp>
         <stringProp name="variableNames">bookId</stringProp>
         <boolProp name="ignoreFirstLine">false</boolProp>
@@ -80,7 +80,7 @@
       </CSVDataSet>
       <hashTree/>
       <CSVDataSet guiclass="TestBeanGUI" testclass="CSVDataSet" testname="CSV Book Objs" enabled="true">
-        <stringProp name="filename">E:/Udacity-Bosch-QualityRelease/automatedtesting/jmeter/objs_books.csv</stringProp>
+        <stringProp name="filename">E:/Udacity-Bosch-QualityRelease/jmeter/objs_books.csv</stringProp>
         <stringProp name="fileEncoding"></stringProp>
         <stringProp name="variableNames">BookID,BookTitle,BookDescription,BookPageCount,BookExcerpt,BookPublishDate</stringProp>
         <boolProp name="ignoreFirstLine">true</boolProp>
@@ -92,7 +92,7 @@
       </CSVDataSet>
       <hashTree/>
       <CSVDataSet guiclass="TestBeanGUI" testclass="CSVDataSet" testname="CSV Activity Objs" enabled="true">
-        <stringProp name="filename">E:/Udacity-Bosch-QualityRelease/automatedtesting/jmeter/objs_activity.csv</stringProp>
+        <stringProp name="filename">E:/Udacity-Bosch-QualityRelease/jmeter/objs_activity.csv</stringProp>
         <stringProp name="fileEncoding"></stringProp>
         <stringProp name="variableNames">ActivityID,ActivityTitle,ActivityDueDate,ActivityCompleted</stringProp>
         <boolProp name="ignoreFirstLine">true</boolProp>
@@ -104,7 +104,7 @@
       </CSVDataSet>
       <hashTree/>
       <CSVDataSet guiclass="TestBeanGUI" testclass="CSVDataSet" testname="CSV CoverPhotos Objs" enabled="true">
-        <stringProp name="filename">E:/Udacity-Bosch-QualityRelease/automatedtesting/jmeter/objs_cover_photos.csv</stringProp>
+        <stringProp name="filename">E:/Udacity-Bosch-QualityRelease/jmeter/objs_cover_photos.csv</stringProp>
         <stringProp name="fileEncoding"></stringProp>
         <stringProp name="variableNames">CoverPhotosID,CoverPhotosIDBook,CoverPhotosUrl</stringProp>
         <boolProp name="ignoreFirstLine">true</boolProp>
@@ -116,7 +116,7 @@
       </CSVDataSet>
       <hashTree/>
       <CSVDataSet guiclass="TestBeanGUI" testclass="CSVDataSet" testname="CSV User Objs" enabled="true">
-        <stringProp name="filename">E:/Udacity-Bosch-QualityRelease/automatedtesting/jmeter/objs_users.csv</stringProp>
+        <stringProp name="filename">E:/Udacity-Bosch-QualityRelease/jmeter/objs_users.csv</stringProp>
         <stringProp name="fileEncoding"></stringProp>
         <stringProp name="variableNames">UserID,UserUserName,UserPassword</stringProp>
         <boolProp name="ignoreFirstLine">true</boolProp>
@@ -128,7 +128,7 @@
       </CSVDataSet>
       <hashTree/>
       <CSVDataSet guiclass="TestBeanGUI" testclass="CSVDataSet" testname="CSV Author Objs" enabled="true">
-        <stringProp name="filename">E:/Udacity-Bosch-QualityRelease/automatedtesting/jmeter/objs_author.csv</stringProp>
+        <stringProp name="filename">E:/Udacity-Bosch-QualityRelease/jmeter/objs_author.csv</stringProp>
         <stringProp name="fileEncoding"></stringProp>
         <stringProp name="variableNames">AuthorID,AuthorIDBook,AuthorFirstName,AuthorLastName</stringProp>
         <boolProp name="ignoreFirstLine">true</boolProp>
@@ -143,9 +143,9 @@
         <stringProp name="ThreadGroup.on_sample_error">continue</stringProp>
         <elementProp name="ThreadGroup.main_controller" elementType="LoopController" guiclass="LoopControlPanel" testclass="LoopController" testname="Loop Controller" enabled="true">
           <boolProp name="LoopController.continue_forever">false</boolProp>
-          <stringProp name="LoopController.loops">1</stringProp>
+          <stringProp name="LoopController.loops">2</stringProp>
         </elementProp>
-        <stringProp name="ThreadGroup.num_threads">1</stringProp>
+        <stringProp name="ThreadGroup.num_threads">2</stringProp>
         <stringProp name="ThreadGroup.ramp_time"></stringProp>
         <boolProp name="ThreadGroup.scheduler">true</boolProp>
         <stringProp name="ThreadGroup.duration">10</stringProp>
@@ -842,43 +842,6 @@
         </HTTPSamplerProxy>
         <hashTree/>
         <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="View Results Tree" enabled="true">
-          <boolProp name="ResultCollector.error_logging">false</boolProp>
-          <objProp>
-            <name>saveConfig</name>
-            <value class="SampleSaveConfiguration">
-              <time>true</time>
-              <latency>true</latency>
-              <timestamp>true</timestamp>
-              <success>true</success>
-              <label>true</label>
-              <code>true</code>
-              <message>true</message>
-              <threadName>true</threadName>
-              <dataType>true</dataType>
-              <encoding>false</encoding>
-              <assertions>true</assertions>
-              <subresults>true</subresults>
-              <responseData>false</responseData>
-              <samplerData>false</samplerData>
-              <xml>false</xml>
-              <fieldNames>true</fieldNames>
-              <responseHeaders>false</responseHeaders>
-              <requestHeaders>false</requestHeaders>
-              <responseDataOnError>false</responseDataOnError>
-              <saveAssertionResultsFailureMessage>true</saveAssertionResultsFailureMessage>
-              <assertionsResultsToSave>0</assertionsResultsToSave>
-              <bytes>true</bytes>
-              <sentBytes>true</sentBytes>
-              <url>true</url>
-              <threadCounts>true</threadCounts>
-              <idleTime>true</idleTime>
-              <connectTime>true</connectTime>
-            </value>
-          </objProp>
-          <stringProp name="filename"></stringProp>
-        </ResultCollector>
-        <hashTree/>
-        <ResultCollector guiclass="TableVisualizer" testclass="ResultCollector" testname="View Results in Table" enabled="true">
           <boolProp name="ResultCollector.error_logging">false</boolProp>
           <objProp>
             <name>saveConfig</name>
