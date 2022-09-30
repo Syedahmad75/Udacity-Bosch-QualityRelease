@@ -155,7 +155,7 @@ stages:
         displayName: Publish Test Results
         inputs:
           testResultsFiles: '**/TEST-*.xml' 
-          searchFolder: '$(System.DefaultWorkingDirectory)/automatedtesting/postman/' 
+          searchFolder: '$(System.DefaultWorkingDirectory)/postman/' 
           publishRunAttachments: true
     
     - job: UITests
