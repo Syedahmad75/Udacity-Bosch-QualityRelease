@@ -121,15 +121,15 @@ stages:
     - job: IntegrationTests
       displayName: Integration Tests For UI and Selenium
       pool:
-       name: syed
+       vmImage: 'myLinuxVM'
        environment: 'TEST'
        resourceType: VirtualMachine
       steps:
       - task: CmdLine@2
         displayName: Install Newman
         inputs:
-          #script: 'sudo npm install -g newman'
-          script: 'pip install newman'
+          script: 'sudo npm install -g newman'
+          #script: 'pip install newman'
           workingDirectory: $(System.DefaultWorkingDirectory)
       - task: CmdLine@2
         displayName: Apply Regression Tests
