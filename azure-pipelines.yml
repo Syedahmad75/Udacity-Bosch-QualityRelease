@@ -150,6 +150,8 @@ stages:
     
     - job: UITests
       displayName: Selenuim UI Tests
+      pool:
+       name: 'Linux VM'
       steps:
       - task: Bash@3
         displayName: 'Setup VM environment'
