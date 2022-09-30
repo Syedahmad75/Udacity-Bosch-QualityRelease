@@ -121,7 +121,7 @@ stages:
     - job: IntegrationTests
       displayName: Integration Tests For UI and Selenium
       pool:
-        vmImage: 'myLinuxVM'
+        name: 'syed'
       steps:
       - task: CmdLine@2
         displayName: Install Newman
