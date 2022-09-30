@@ -147,4 +147,52 @@ stages:
           testResultsFiles: '**/TEST-*.xml' 
           searchFolder: '$(System.DefaultWorkingDirectory)/automatedtesting/postman/' 
           publishRunAttachments: true
+    
+    - job: UITests
+      displayName: Selenuim UI Tests
+      steps:
+      - task: Bash@3
+        displayName: 'Setup VM environment'
+        inputs:
+          targetType: 'inline'
+          script: |
+            #! /bin/bash
+            sudo apt-get upgrade -y
+            sudo apt-get install python3-pip -y
+            sudo apt-get install unzip -y
+      - task: Bash@3
+        displayName: 'Configure Selenium, Chromium & chromedriver'
+        inputs:
+          targetType: 'inline'
+          script: |
+            #install chromium & selenium
+            sudo apt-get install -y chromium-browser
+            pip3 install selenium
+            
+            #install chromedriver & export path
+            if [ ! -f $(Pipeline.Workspace)/chromedriver ]; then
+              wget https://chromedriver.storage.googleapis.com/100.0.4896.20/chromedriver_linux64.zip
+              unzip chromedriver_linux64.zip
+            fi
+            export PATH=$PATH:$(Pipeline.Workspace)/chromedriver      
 
+      - task: Bash@3
+        displayName: 'Run UI test'
+        inputs:
+          targetType: 'inline'
+          script: |
+            if [ ! -d /var/log/selenium ]; then
+                  sudo mkdir /var/log/selenium
+                  sudo chmod 777 /var/log/selenium
+            fi            
+            python3 ./automatedtesting/selenium/login.py 2>&1 | sudo tee -a /var/log/selenium/selenium-test.log
+            cd $(System.DefaultWorkingDirectory)
+            mkdir -p log/selenium              
+            sudo cp /var/log/selenium/selenium-test.log log/selenium/selenium-test.log
+            ls -al
+      - task: PublishPipelineArtifact@1
+        displayName: Publish selenium logs
+        inputs:
+          targetPath: '$(System.DefaultWorkingDirectory)/log/selenium/selenium-test.log'
+          artifact: 'drop-selenium-logs'
+          publishLocation: 'pipeline'
