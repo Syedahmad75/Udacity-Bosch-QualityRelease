@@ -121,9 +121,7 @@ stages:
     - job: IntegrationTests
       displayName: Integration Tests For UI and Selenium
       pool:
-       vmImage: 'myLinuxVM'
-       environment: 'TEST'
-       resourceType: VirtualMachine
+       name: 'Linux VM'
       steps:
       - task: CmdLine@2
         displayName: Install Newman
