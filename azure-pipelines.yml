@@ -121,7 +121,9 @@ stages:
     - job: IntegrationTests
       displayName: Integration Tests For UI and Selenium
       pool:
-        name: 'syed'
+       name: syed
+       environment: 'TEST'
+       resourceType: VirtualMachine
       steps:
       - task: CmdLine@2
         displayName: Install Newman
