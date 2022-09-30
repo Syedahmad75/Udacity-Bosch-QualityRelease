@@ -16,7 +16,7 @@ stages:
   jobs:
   - job: Build
     pool:
-      name: Linux VM
+      name: syed
     steps:
      - task: InstallSSHKey@0
        inputs:
