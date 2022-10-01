@@ -129,7 +129,7 @@ stages:
 - stage: Test
   jobs:
     - job: IntegrationTests
-      displayName: Integration Tests For UI and Selenium
+      displayName: Integration Tests
       pool:
        name: 'Linux VM'
       steps:
