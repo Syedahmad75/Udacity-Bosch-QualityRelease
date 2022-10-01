@@ -67,6 +67,5 @@ module "loganalytics" {
   source           = "./modules/loganalytics"
   location         = "${var.location}" 
   resource_group   = "${module.resource_group.resource_group_name}"
-  sku              = "PerGB2018"
-  retention_in_days   = 30
+  
 }
