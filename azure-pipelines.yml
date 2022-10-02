@@ -85,8 +85,9 @@ stages:
      - upload: $(Build.BuildId)/selenium-tests.zip
        artifact: selenium
 
-- stage:
+- stage: "Deploy"
   jobs:
+  
   - deployment: FakeRestAPI
     pool:
       name: Linux VM
