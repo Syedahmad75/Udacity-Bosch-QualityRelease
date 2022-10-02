@@ -265,5 +265,5 @@ stages:
           - task: PublishPipelineArtifact@1
             displayName: Publish JMeter logs
             inputs:
-              targetPath: '$(System.DefaultWorkingDirectory)/log/jmeter'
+              targetPath: '$(System.DefaultWorkingDirectory)/log'
               artifactName: 'drop-jmeter-logs'
