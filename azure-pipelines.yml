@@ -245,7 +245,7 @@ stages:
               rootFolderOrFile: '$(System.DefaultWorkingDirectory)/log/jmeter'
               includeRootFolder: false
               archiveType: 'zip'
-              archiveFile: '$(System.DefaultWorkingDirectory)/log/jmeter/jmeter-$(Build.BuildId).zip'
+              archiveFile: '$(System.DefaultWorkingDirectory)/log/jmeter-$(Build.BuildId).zip'
               verbose: true
 
       #   - bash: |
