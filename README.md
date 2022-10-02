@@ -1,4 +1,4 @@
-# Azure Infrastructure Operations Project: Deploying a scalable IaaS web server in Azure
+# Azure Pipelines: Ensure Quality Release Using Postman, Selenium, jmeter and Azure Monitor
 
 ### Introduction
 For this project, In this project, we develop and demonstrate our skills in using a variety of industry leading tools, especially Microsoft Azure, to create disposable test environments and run a variety of automated tests with the click of a button. Additionally, we will monitor and provide insight of our application's behavior, and determine root causes by querying the application’s custom log files.
