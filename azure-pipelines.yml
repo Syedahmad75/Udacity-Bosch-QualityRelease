@@ -226,7 +226,7 @@ stages:
                fi
                if [ ! -d /var/log/jmeter/stress-test-html-report ]; then
                        sudo mkdir /var/log/jmeter/stress-test-html-report
-                       sudo chmod 777 /var/log//stress-test-html-report
+                       sudo chmod 777 /var/log/stress-test-html-report
                fi  
                if [ ! -d /var/log/jmeter/endurance-test-html-report ]; then
                        sudo mkdir /var/log/jmeter/endurance-test-html-report
